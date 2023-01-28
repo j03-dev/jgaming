@@ -2,8 +2,6 @@ import pygame
 
 from component.component_sprite import Sprite
 
-from gameserver.client import connect, receive_message
-
 # Task
 # -[ ] get all element in component and attack then
 
@@ -28,13 +26,13 @@ JUMP = 30
 
 class Player(Sprite):
     def __init__(
-        self,
-        x: float,
-        y: float,
-        velocity: float,
-        pygame_object: pygame.Surface | list[pygame.Surface],
-        width: int = 48,
-        height: int = 48,
+            self,
+            x: float,
+            y: float,
+            velocity: float,
+            pygame_object: pygame.Surface | list[pygame.Surface],
+            width: int = 48,
+            height: int = 48,
     ) -> None:
         Sprite.__init__(self, x, y, velocity, pygame_object, width, height)
         self.is_attack: bool = False
@@ -59,7 +57,7 @@ class Player(Sprite):
             action_now = "run"
 
         elif (
-            keys[pygame.K_RIGHT] or keys[pygame.K_l]
+                keys[pygame.K_RIGHT] or keys[pygame.K_l]
         ) and self.x <= self.screen_width - self.width:
             self.x += self._velocity
             self.side = "right"
