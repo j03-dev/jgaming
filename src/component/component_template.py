@@ -3,15 +3,15 @@ import pygame
 
 
 class Component:
-    def __init__(self, x: float, y: float, pygame_object: object | list[object]) -> None:
-        self.x: float = x
-        self.y: float = y
+    def __init__(self, x: float, y: float, pygame_object: pygame.Surface | list[pygame.Surface]) -> None:
+        self.x = x
+        self.y = y
         self.current_image: int = 0
         self.screen_width: int = 0
         self.screen_height: int = 0
-        self.pygame_object: object | list[object] = pygame_object
+        self.pygame_object: pygame.Surface | list[pygame.Surface] = pygame_object
 
-    def add(self, screen: object) -> None:
+    def add(self, screen: pygame.Surface) -> None:
         """function to add component inside screen
 
         :param: screen is display

@@ -8,7 +8,12 @@ pygame.init()
 
 class Screen:
     def __init__(
-            self, title: str, width: int, height: int, screen_color: tuple = (0, 0, 0), fps: int = 90,
+        self,
+        title: str,
+        width: int,
+        height: int,
+        screen_color: tuple = (0, 0, 0),
+        fps: int = 90,
     ) -> object:
         pygame.display.set_caption(title)
         self.width: int = width

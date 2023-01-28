@@ -4,14 +4,22 @@ from .component_template import Component
 
 
 class ComponentImageAnimated(Component):
-    def __init__(self, x: float, y: float, velocity: float, pygame_object) -> None:
+    def __init__(
+        self,
+        x: float,
+        y: float,
+        velocity: float,
+        pygame_object: pygame.Surface | list[pygame.Surface],
+    ):
         Component.__init__(self, x, y, pygame_object)
         self._velocity = velocity
         self.pygame_object_right_side = self.pygame_object.copy()
-        self.image_width, self.image_height = self.pygame_object_right_side[0].get_size()
         self.pygame_object_left_side = list(map(self.flip, self.pygame_object))
+        self.image_width, self.image_height = self.pygame_object_right_side[
+            0
+        ].get_size()
 
-    def add(self, screen) -> None:
+    def add(self, screen: pygame.Surface) -> None:
         self.screen_width, self.screen_height = screen.get_size()
         if self.current_image < len(self.pygame_object):
             screen.blit(self.pygame_object[int(self.current_image)], (self.x, self.y))
@@ -19,8 +27,7 @@ class ComponentImageAnimated(Component):
             self.current_image = 0
 
     def anime(self) -> None:
-        self.current_image += 0.1
-        self.current_image %= len(self.pygame_object)
+        self.current_image = (self.current_image + 0.1) % len(self.pygame_object)
 
     def listen_event(self, keys) -> bool:
         if keys[pygame.K_UP] and self.y > 0:
